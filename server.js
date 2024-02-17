@@ -4,21 +4,38 @@ var { buildSchema } = require('graphql');
 var { ruruHTML } = require('ruru/server');
 
 const AGE = 29;
+const WEIGHT = 70;
+const ISOVER18 = true;
+const HOBBIES = ['F1', 'Golf', 'Motorcycless'];
+
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
   type Query {
-    hello: String
-    age: Int
+    hello(name: String!): String
+
+    age: Int!
+    weight: Float! 
+    isOver18: Boolean
+    hobbies: [String!]!
   }
 `);
 
 // resolver function for each API endpoint
 var rootValue = {
-  hello: () => {
-    return 'Hello world!';
+  hello: ({ name }) => {
+    return 'Hello ' + name;
   },
   age: () => {
     return AGE;
+  },
+  weight: () => {
+    return WEIGHT;
+  },
+  isOver18: () => {
+    return ISOVER18;
+  },
+  hobbies: () => {
+    return HOBBIES;
   },
 };
 
