@@ -2,7 +2,8 @@
   "name": "graphqlwithnodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --watch server.js"
@@ -13,6 +14,8 @@
     "express": "^4.18.2",
     "graphql": "^16.8.1",
     "graphql-http": "^1.22.0",
+    "graphql-yoga": "^5.1.1",
+    "lodash": "^4.17.21",
     "ruru": "^2.0.0-beta.11"
   }
 }
