@@ -11,18 +11,23 @@ const client = new MongoClient(uri, {
   },
 });
 
-async function run() {
+export async function setupDatabase() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    const mFlixDb = client.db('sample_mflix');
+    const mFlixusers = mFlixDb.collection('users');
+    const mFlixmovieCollection = mFlixDb.collection('movies');
+
     // Send a ping to confirm a successful connection
-    await client.db('admin').command({ ping: 1 });
-    console.log(
-      'Pinged your deployment. You successfully connected to MongoDB!'
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    return {
+      client,
+      mFlixDb,
+      mFlixusers,
+      mFlixmovieCollection,
+    };
+  } catch (e) {
+    console.log('Error connecting to MongoDB', e);
+    return {};
   }
 }
-run().catch(console.dir);

@@ -30,7 +30,11 @@ export const resolvers = {
   },
 
   Mutation: {
-    createUser: (_, { user }) => {
+    // obj, args, ctx
+    createUser: async (_, { user }, { mongo }) => {
+      console.log(mongo);
+      const movies = await mongo.mFlixmovieCollection.find().toArray();
+      console.log(movies);
       // insert into db
 
       return {
