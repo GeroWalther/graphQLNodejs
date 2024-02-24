@@ -18,6 +18,7 @@ export async function setupDatabase() {
     const mFlixDb = client.db('sample_mflix');
     const mFlixusers = mFlixDb.collection('users');
     const mFlixmovieCollection = mFlixDb.collection('movies');
+    const comments = mFlixDb.collection('comments');
 
     // Send a ping to confirm a successful connection
     return {
@@ -25,6 +26,7 @@ export async function setupDatabase() {
       mFlixDb,
       mFlixusers,
       mFlixmovieCollection,
+      comments,
     };
   } catch (e) {
     console.log('Error connecting to MongoDB', e);
